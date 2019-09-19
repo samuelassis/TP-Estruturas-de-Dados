@@ -5,7 +5,7 @@
 
 //Lista sum_elements(Lista);
 
-int operation(&Lista);
+int operation(int, &Lista);
 
 
 

@@ -1,16 +1,22 @@
 #include <cstdio>
+#include <iostream>
 #include "lista.h"
 #include "functions.h"
 
 void main() {
-  int q;
-  char e;
-  while(scanf("%d %c", &q, &e) != EOF) {
-    if (e == 'p')
-      // veja que a funcao bar() sempre retorna 1, entao o programa sempre
-      // vai imprimir 1.
-      // Troque essa funcao (inclusive o nome dela) caso queira tirar uma nota
-      // melhor no TP!
-      printf("%d\n", operation());
+  int amount;
+  Lista Containers;
+  char command;
+  while(scanf("%d %c", &amount, &command) != EOF) {
+    if (command == 'p'){
+      //Chama função de calcular operações
+      std::cout << operation(amount, Containers)<<std::endl;
+    }else if(command == 'i'){
+      //Adiciona recipiente na lista
+      Containers.add_element(amount);
+    }else if(command == 'r'){
+      //Remove recipiente da lista
+      Containers.remove_elements(amount);
+    }
   }
 }
