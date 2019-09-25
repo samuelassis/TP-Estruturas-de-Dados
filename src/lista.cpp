@@ -21,9 +21,10 @@ Lista::~Lista(){
 	}
 }
 
-void Lista::add_element(int element){
+void Lista::add_element(int element, int s){
 	Cell* newbie = new Cell();
 	newbie->value = element;
+	newbie->step = s;
 	
 	if(n_elements == 0){ // Tests if insertion is the first
 		first->next = newbie;
@@ -68,7 +69,7 @@ void Lista::print_list(){
 	int i;
 	for(i =0; i < n_elements; i++){
 		aux = aux->next;
-		std::cout<<" ["<<aux->value<<"] ";
+		std::cout<<" ["<<aux->value<<"/"<<aux->step<<"] ";
 	}
 }
 

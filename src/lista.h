@@ -3,6 +3,7 @@
 
 struct Cell{
 	int value;
+	int step;
 	Cell* next;
 	Cell* previous;
 };
@@ -14,7 +15,7 @@ struct Lista{
 
 	Lista();
 	~Lista();
-	void add_element(int);
+	void add_element(int,int);
 	void remove_element(int);
 	void print_list();
 	int get_n_elements();

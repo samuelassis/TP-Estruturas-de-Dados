@@ -4,9 +4,9 @@
 using namespace std;
 int main(){
 	Lista teste;
-	teste.add_element(10);
-	teste.add_element(30);
-	operation(100,teste);
+	teste.add_element(10,0);
+	teste.add_element(30,0);
+	cout<<operation(100,teste);
 	/*
 	for(int i = 1; i <= 20; i++){
 		if(i % 2 != 0){
