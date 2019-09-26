@@ -45,11 +45,16 @@ int operation (int quantity, Lista &master){
 			s++;		
 		it_accrued = it_accrued->next;
 	}
+	bool x = false;
+	Cell* cont = Accrued.last;
+	while(!x){
+		if(quantity == cont->value)
+			return cont->step;
+		cont = cont->previous;
+	}
 	
 	std::cout<<"\nLista Accrued:\n";
 	Accrued.print_list();
-	int total = s++;
-	return total;
 }
 
 
