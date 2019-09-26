@@ -3,7 +3,7 @@
 #include "lista.h"
 #include "functions.h"
 
-void main() {
+int main() {
   int amount;
   Lista Containers;
   char command;
@@ -13,10 +13,11 @@ void main() {
       std::cout << operation(amount, Containers)<<std::endl;
     }else if(command == 'i'){
       //Adiciona recipiente na lista
-      Containers.add_element(amount);
+      Containers.add_element(amount,0);
     }else if(command == 'r'){
       //Remove recipiente da lista
-      Containers.remove_elements(amount);
+      Containers.remove_element(amount);
     }
   }
+  return 0;
 }

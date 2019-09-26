@@ -16,10 +16,12 @@ int operation (int quantity, Lista &master){
 			Accrued.add_element(it_master->value,1);
 		}
 	}
+		/*
 		std::cout<<"\nLista Master:\n";
 		master.print_list();
 		std::cout<<"\nLista Accrued:\n";
 		Accrued.print_list();
+		*/
 	
 	Cell* it_accrued = Accrued.first->next;
 	int s = 1;
@@ -30,7 +32,7 @@ int operation (int quantity, Lista &master){
 		it_master = master.first->next;
 		for(int b=0;b<master.get_n_elements();b++){
 			sum = it_master->value + it_accrued->value;
-			sub = it_master->value - it_accrued->value;
+			sub = it_accrued->value - it_master->value;
 			if(sum > 0)
 				Accrued.add_element(sum, s+1);
 			if(sub > 0)
@@ -39,13 +41,15 @@ int operation (int quantity, Lista &master){
 				found = true;
 			it_master = it_master->next;
 		}
-		if(it_accrued->step != s)
+		if(it_accrued->next->step != s)
 			s++;		
 		it_accrued = it_accrued->next;
 	}
+	
 	std::cout<<"\nLista Accrued:\n";
 	Accrued.print_list();
-	return s;
+	int total = s++;
+	return total;
 }
 
 

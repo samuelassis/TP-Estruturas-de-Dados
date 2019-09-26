@@ -6,7 +6,8 @@ int main(){
 	Lista teste;
 	teste.add_element(10,0);
 	teste.add_element(30,0);
-	cout<<operation(100,teste);
+	//teste.add_element(20,0);
+	cout<<operation(20,teste)<<std::endl;
 	/*
 	for(int i = 1; i <= 20; i++){
 		if(i % 2 != 0){
