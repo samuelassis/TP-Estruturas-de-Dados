@@ -6,8 +6,7 @@
 int operation (int quantity, Lista &master){
 	Lista Accrued;
 	Cell* it_master = master.first;
-	
-	
+	//Check if the searched value is already in the master list and copy Master to Accrued
 	for(int a=0; a<master.get_n_elements(); a++){
 		it_master = it_master->next;
 		if(it_master->value == quantity){
@@ -16,18 +15,12 @@ int operation (int quantity, Lista &master){
 			Accrued.add_element(it_master->value,1);
 		}
 	}
-		/*
-		std::cout<<"\nLista Master:\n";
-		master.print_list();
-		std::cout<<"\nLista Accrued:\n";
-		Accrued.print_list();
-		*/
-	
+
 	Cell* it_accrued = Accrued.first->next;
 	int s = 1;
 	int sum, sub;
 	bool found = false;
-
+	//Sum and substract the elements from the lists until find the given value
 	while(!found){
 		it_master = master.first->next;
 		for(int b=0;b<master.get_n_elements();b++){
@@ -37,14 +30,21 @@ int operation (int quantity, Lista &master){
 				Accrued.add_element(sum, s+1);
 			if(sub > 0)
 				Accrued.add_element(sub,s+1);
-			if((sum == quantity)||(sub == quantity))
+			if((sum == quantity)||(sub == quantity)){
 				found = true;
+				if(Accrued.last->value == quantity)
+					return Accrued.last->step;
+				else if(Accrued.last->previous->value == quantity)
+					return Accrued.last->previous->step;
+			}
 			it_master = it_master->next;
 		}
 		if(it_accrued->next->step != s)
 			s++;		
 		it_accrued = it_accrued->next;
 	}
+	
+	/*
 	bool x = false;
 	Cell* cont = Accrued.last;
 	while(!x){
@@ -52,70 +52,5 @@ int operation (int quantity, Lista &master){
 			return cont->step;
 		cont = cont->previous;
 	}
-	
-	std::cout<<"\nLista Accrued:\n";
-	Accrued.print_list();
-}
-
-
-	/*
-	
-
-	void copy(Lista& main, Lista& copy){
-		Cell* it_main = main.first;
-		for(int i=0;i<main.get_n_elements();i++){
-			it_main = it_main->next;
-			copy.add_element(it_main->value);
-		}
-	}
-
-
-	bool flag = false;
-	int sum, sub;
-	int n_operation = 0;
-	Cell* it_master = master.first;
-	
-	Cell* it_accrued = accrued.first;
-	copy(master,accrued);
-
-	//while(flag == false){
-		
-		for(int i=0; i<master.get_n_elements(); i++){
-			it_master = it_master->next;
-			for(int j=0;j<master.get_n_elements();j++){
-				it_accrued = it_accrued->next;
-				
-				sum = it_master->value + it_accrued->next->value;
-				sub = it_master->value - it_accrued->next->value;
-				if(sum > 0){
-					accrued.add_element(sum);
-				}
-				if(sub > 0){
-					accrued.add_element(sub);
-				}
-				if((sum == quantity)||(sub == quantity)){
-					flag = true;					
-				}
-			}
-	//	}
-		n_operation++;
-
-	}
-	std::cout<<"\nOPERACOES: "<<n_operation<<std::endl;
-	
-	int size = master.get_n_elements();
-	int containers [size];
-	Lista* iterator = master->head
-	for(int i = 0; i< size; )
-	Lista sum_master;
-	for(int i = 0; i < size; i++){
-		int sum = containers[]
-	}
 	*/
-
-	// achar o tamanho da lista master, os recipientes que tenho
-	//chamar a função que soma e subtrai tudo e volta a lista
-	//somar e subtrair cada valor em master um pelos outros e armazenar em sum
-
-	//somar e subtrair cada valor de master pelos valores em sum ate achar o quantity(condição de parada: flag ser verdadeiro)
-
+}
