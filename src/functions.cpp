@@ -43,14 +43,5 @@ int operation (int quantity, Lista &master){
 			s++;		
 		it_accrued = it_accrued->next;
 	}
-	
-	/*
-	bool x = false;
-	Cell* cont = Accrued.last;
-	while(!x){
-		if(quantity == cont->value)
-			return cont->step;
-		cont = cont->previous;
-	}
-	*/
+	return 0;
 }
