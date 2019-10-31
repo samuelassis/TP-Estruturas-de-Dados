@@ -1,6 +1,11 @@
-#ifndef __TP1_ED___
-#define __TP1_ED__
+#ifndef _FUNCTIONS_H_
+#define _FUNCTIONS_H_
 
-int bar();
+#include <string>
+
+struct Planet{
+	int time;
+	std::string name;
+};
 
 #endif
