@@ -4,7 +4,7 @@ EXEC=./tp1
 TMPOUT=tp1.testresult
 
 
-$(EXEC): src/main.cc functions.o lista.o
+$(EXEC): src/main.cpp functions.o lista.o
 	$(CC) $(CFLAGS) src/main.cc functions.o lista.o -o $(EXEC)
 
 functions.o: src/functions.cpp 

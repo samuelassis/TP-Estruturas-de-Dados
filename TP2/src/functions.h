@@ -8,4 +8,8 @@ struct Planet{
 	std::string name;
 };
 
+void CountingSort(int, Planet[], Planet[]);
+
+//void RadixSort();
+
 #endif

@@ -1,6 +1,7 @@
 #define n_months 12
 
 #include <cstdio>
+#include <iostream>
 #include "functions.h"
 
 int main() {
@@ -16,7 +17,7 @@ int main() {
 	planets = new Planet [p];   
     for(int i=0; i<p; i++){
     	std::cin>> period;
-    	std::cin>> p_name;
+    	std::cin>> planet_tag;
     	planets[i].time = period;
     	planets[i].name = planet_tag;
     }
