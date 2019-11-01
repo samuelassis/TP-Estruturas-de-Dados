@@ -1,6 +1,6 @@
 
 CC=g++
-CFLAGS=-std=c++11 -Wall -Wextra 
+CFLAGS=-std=c++11 -Wall -Wextra -g -Og
 EXEC=./tp2
 TMPOUT=tp2.testresult
 

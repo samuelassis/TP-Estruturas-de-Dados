@@ -20,7 +20,6 @@ void CountingSort(int n, Planet main[], Planet result[]){
 		if(main[i].time > bigger)
 			bigger = main[i].time;
 	}
-	std::cout<<"\nmaior = "<<bigger<<"\n";
 	
 	int indexes[bigger+1];
 	
@@ -31,19 +30,15 @@ void CountingSort(int n, Planet main[], Planet result[]){
 	for(int i=0; i<n; i++){
 		indexes[main[i].time]++;
 	}
-	std::cout<<"\ncontou valores main\n";
-	
-	print_Iarray(bigger+1, indexes);
+
 	for(int i=1;i<bigger+1;i++){
 		indexes[i] += indexes[i-1];
 	}
-	std::cout<<"\nsomou indexes\n";
-	print_Iarray(bigger+1,indexes);
-	for(int i=n; 0 < i ; i--){
-		std::cout<<"ENTROU no role"<< i;
-		result[indexes[main[i].time]-1].time = main[i].time;
-		result[indexes[main[i].time]-1].name = main[i].name;
+
+	for(int i=n-1; 0 <= i ; i--){
+		result[indexes[main[i].time] - 1].time = main[i].time;
+		result[indexes[main[i].time] - 1].name = main[i].name;
 		indexes[main[i].time]--;
 	}
-	std::cout<<"\ntrocou os vetores\n";
+
 }

@@ -27,12 +27,15 @@ int main() {
     print_Parray(p, order_planets);
     //Chamar o a Counting e ordenar planets por tempo (com o limite t);
     CountingSort(p, planets,order_planets);
+    std::cout<<"\n";
+    print_Parray(p, order_planets);
     //print_Parray(p,order_planets);
     //Jogar os planetas de cada mes em months
     
     //Chamar Radix e ordenar cada posição pelo nome dos planetas
     
     delete [] planets;
+    delete [] order_planets;
   }
   return 0;
 }
