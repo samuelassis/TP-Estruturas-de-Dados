@@ -41,8 +41,9 @@ void CountingSort(int n, Planet main[], Planet result[]){
 		indexes[main[i].time]--;
 	}
 }
-//void Scheduler(int n,int t_max,Planet planets[],Planet schedule[][]);
-void Scheduler(int n,int t_max,Planet planets[],Planet schedule[][12]){
+
+void Scheduler(int n,int t_max,Planet planets[]){
+	/*
 	int cont = 0;
 	int j = 0;
 	int k = 0;
@@ -62,4 +63,5 @@ void Scheduler(int n,int t_max,Planet planets[],Planet schedule[][12]){
 		}
 	i++;
 	}
+	*/
 }
