@@ -1,3 +1,4 @@
+#define n_alphabet 26
 #include "functions.h"
 #include <string>
 #include <iostream>
@@ -13,17 +14,11 @@ void print_Iarray(int size, int array[]){
 	}
 }
 
-void CountingSort(int n, Planet main[], Planet result[]){
-	int bigger = main[0].time;
+void CountingSort(int n,int begin,int end, Planet main[]){
+	Planet* sorted = nullptr
+	int indexes[n_alphabet];
 	
-	for(int i=0; i<n;i++){
-		if(main[i].time > bigger)
-			bigger = main[i].time;
-	}
-	
-	int indexes[bigger+1];
-	
-	for(int i=0;i<bigger+1;i++){
+	for(int i=0;i<n_alphabet;i++){
 		indexes[i] = 0;
 	}
 
@@ -34,15 +29,22 @@ void CountingSort(int n, Planet main[], Planet result[]){
 	for(int i=1;i<bigger+1;i++){
 		indexes[i] += indexes[i-1];
 	}
-
+	sorted = new Planet[n]
 	for(int i=n-1; 0 <= i ; i--){
-		result[indexes[main[i].time] - 1].time = main[i].time;
-		result[indexes[main[i].time] - 1].name = main[i].name;
+		sorted[indexes[main[i].time] - 1].time = main[i].time;
+		sorted[indexes[main[i].time] - 1].name = main[i].name;
 		indexes[main[i].time]--;
 	}
+	
+	for(int i = 0; i < n; i++){
+		main[i].time = sorted[i].time;
+		main[i].name = sorted[i].name;
+	}
+	delete results [];
 }
-//void Scheduler(int n,int t_max,Planet planets[],Planet schedule[][]);
-void Scheduler(int n,int t_max,Planet planets[],Planet schedule[][12]){
+
+void Scheduler(int n,int t_max,Planet planets[]){
+	/*
 	int cont = 0;
 	int j = 0;
 	int k = 0;
@@ -62,4 +64,5 @@ void Scheduler(int n,int t_max,Planet planets[],Planet schedule[][12]){
 		}
 	i++;
 	}
+	*/
 }
