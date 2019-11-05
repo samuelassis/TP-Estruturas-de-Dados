@@ -5,6 +5,7 @@
 #include "functions.h"
 
 int main() {
+
   int t;
   int p;
   int c;
@@ -37,5 +38,6 @@ int main() {
    delete [] planets;
    delete [] order_planets;
    delete [] months;
+   
   return 0;
 }
