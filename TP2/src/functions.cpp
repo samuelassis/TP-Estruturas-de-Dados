@@ -13,51 +13,66 @@ void print_Iarray(int size, int array[]){
 		std::cout<<"["<< array[b] <<"] ";
 	}
 }
+void Merge(Planet main[], int l, int m, int r) 
+{ 
+    int i, j, k; 
+    int size_l = m - l + 1; 
+    int size_r =  r - m; 
+  
+    Planet* L = new Planet [size_l];
+    Planet* R = new Planet [size_r]; 
+    for (i = 0; i < size_l; i++){
+		L[i].time = main[l + i].time; 
+		L[i].name = main[l + i].name; 
+    }
+    for (j = 0; j < size_r; j++){
+		R[j].time = main[m + 1+ j].time;
+		R[j].name = main[m + 1+ j].name;
+    }
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < size_l && j < size_r) { 
+        if (L[i].time <= R[j].time) 
+        { 
+            main[k].time = L[i].time; 
+            main[k].name = L[i].name;
+            i++; 
+        } 
+        else
+        { 
+            main[k].time = R[j].time;
+            main[k].name = R[j].name;
+            j++; 
+        } 
+        k++; 
+    } 
 
-void Merge(Planet main[],Planet sorted[], int begin, int middle, int end){
-    int i, j, k,r;
-    i = begin;
-    j = middle + 1;
-    k = begin;
-    while(i <= middle && j <= end){
-        if(sorted[i].time < sorted[j].time){
-            main[k].time = sorted[i].time;
-            main[k].name = sorted[i].name;
-            i++;
-        }
-        else{
-            main[k].time = sorted[j].time;
-            main[k].name = sorted[j].name;
-            j++;
-        }
-        k++;
+    while (i < size_l) { 
+        main[k].time = L[i].time; 
+        main[k].name = L[i].name;
+        i++; 
+        k++; 
+    } 
+    while (j < size_r) { 
+        main[k].time = R[j].time;
+        main[k].name = R[j].name;
+        j++; 
+    	k++; 
     }
-    while(i <= middle){
-        main[k].time = sorted[i].time;
-        main[k].name = sorted[i].name;
-        i++;
-        k++;
-    }
-    while(j <= end){
-        main[k].time = sorted[j].time;
-        main[k].name = sorted[j].name;
-        j++;
-        k++;
-    }
-    for(r = begin; r <= end; r++){
-        sorted[r].time = main[r].time;
-        sorted[r].name = main[r].name;
-    }
-}
-
-void MergeSort(Planet main[], Planet sorted[], int begin, int end){
-    if(begin < end){
-        int middle = (begin + end) / 2;
-        MergeSort(main, sorted, begin, middle);
-        MergeSort(main, sorted, middle + 1, end);
-        Merge(main, sorted, begin, middle, end);
-    }
-}
+    delete[] L;
+    delete[] R;
+} 
+  
+void MergeSort(Planet main[], int left, int right) 
+{ 
+    if (left < right) { 
+        int middle = left+(right-left)/2;
+        MergeSort(main, left, middle); 
+        MergeSort(main, middle+1, right); 
+        Merge(main, left, middle, right); 
+    } 
+} 
 
 void CountingSort(int n,int begin,int end, Planet main[]){
 	Planet* sorted = nullptr;
