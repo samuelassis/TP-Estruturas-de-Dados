@@ -5,7 +5,7 @@
 
 void print_Parray(int size, Planet array[]){
 	for(int a = 0; a<size; a++){
-		std::cout<<"["<< array[a].name <<"|"<< array[a].time<<"] ";
+		std::cout<<"["<< array[a].month<<"|"<< array[a].name <<"|"<< array[a].time<<"] ";
 	}
 }
 void print_Iarray(int size, int array[]){
@@ -13,8 +13,7 @@ void print_Iarray(int size, int array[]){
 		std::cout<<"["<< array[b] <<"] ";
 	}
 }
-void Merge(Planet main[], int l, int m, int r) 
-{ 
+void Merge(Planet main[], int l, int m, int r){ 
     int i, j, k; 
     int size_l = m - l + 1; 
     int size_r =  r - m; 
@@ -64,8 +63,7 @@ void Merge(Planet main[], int l, int m, int r)
     delete[] R;
 } 
   
-void MergeSort(Planet main[], int left, int right) 
-{ 
+void MergeSort(Planet main[], int left, int right){ 
     if (left < right) { 
         int middle = left+(right-left)/2;
         MergeSort(main, left, middle); 
@@ -74,55 +72,75 @@ void MergeSort(Planet main[], int left, int right)
     } 
 } 
 
-void CountingSort(int n,int begin,int end, Planet main[]){
+void CountingSort(int begin, int end, int n_name, int n, Planet main[]){
 	Planet* sorted = nullptr;
 	int indexes[n_alphabet];
-	
-	for(int i=0;i<n_alphabet;i++){
-		indexes[i] = 0;
-	}
+	int place;
 
-	for(int i=0; i<n; i++){
-		indexes[main[i].time]++;
-	}
+	for(int j = n_name-1; j >= 0; j--){
+		
+		for(int i=0;i<n_alphabet;i++){
+			indexes[i] = 0;
+		}
+//		std::cout<<"vai ir de "<<begin<<" a "<<end<<"\n";
+		for(int i=begin; i<end; i++){
+			indexes[((int)main[i].name[j]-97)]++;
+//			std::cout<<"Letra: "<<main[i].name[j]<<" --> "<<(int)main[i].name[j]<<"-"<<(int)main[i].name[j]-97<<"\n";
+		}
+		//std::cout<<"\n index: ";
+//		print_Iarray(n_alphabet, indexes);
 
-	for(int i=1;i<n_alphabet;i++){
-		indexes[i] += indexes[i-1];
+		for(int i=1;i<n_alphabet;i++){
+			indexes[i] += indexes[i-1];
+		}
+
+		sorted = new Planet[n];
+		for(int i=end-1; begin <= i ; i--){
+			place = (indexes[((int)main[i].name[j]-97)]-1)+begin;
+			sorted[place].name = main[i].name;
+			sorted[place].time = main[i].time;
+			sorted[place].month = main[i].month;
+			indexes[((int)main[i].name[j]-97)]--;
+		}
+
+		for(int i = 0; i < n; i++){
+			main[i].time = sorted[i].time;
+			main[i].name = sorted[i].name;
+			main[i].month = sorted[i].month;
+		}
+		delete [] sorted;
 	}
-	sorted = new Planet[n];
-	for(int i=n-1; 0 <= i ; i--){
-		sorted[indexes[main[i].time] - 1].time = main[i].time;
-		sorted[indexes[main[i].time] - 1].name = main[i].name;
-		indexes[main[i].time]--;
-	}
-	
-	for(int i = 0; i < n; i++){
-		main[i].time = sorted[i].time;
-		main[i].name = sorted[i].name;
-	}
-	delete [] sorted;
 }
 
-void Scheduler(int n,int t_max,Planet planets[]){
-	/*
+void SetMonth(Planet master[],int size, int t_max){
 	int cont = 0;
-	int j = 0;
-	int k = 0;
+	int m = 1;
 	int i = 0;
-	while(i < n-1){
-		cont += planets[i].time;
+	while(i < size){
+		cont += master[i].time;
 		if(cont <= t_max){
-			k++;
-			schedule[k][j].time = planets[i].time;
-			schedule[k][j].name = planets[i].name;
+			master[i].month = m;
 		}else{
-			cont = planets[i].time;
-			k = 0;
-			j++;
-			schedule[k][j].time = planets[i].time;
-			schedule[k][j].name = planets[i].name;
+			m++;
+			master[i].month = m;
+			cont = master[i].time;
 		}
-	i++;
+		i++;
 	}
-	*/
+}
+
+void Scheduler(int size,int max_t, int n_char, Planet planets[]){
+	SetMonth(planets, size, max_t);
+	std::cout<<"\n";
+	//print_Parray(size,planets);
+
+	int i = 0;
+	int j = 1;
+	while(j < size){
+		if(planets[i].month < planets[j].month){
+			CountingSort(i, j,n_char,size,planets);
+			i = j;
+		}
+		j++;
+	}
 }
