@@ -72,16 +72,12 @@ void MergeSort(Planet main[], int left, int right){
     } 
 } 
 
-void CountingSort(int begin, int end, int n_name, int n, Planet main[]){
-	Planet* sorted = nullptr;
+void CountingSort(int begin, int end, int n_name, Planet main[], Planet sorted[]){
 	int indexes[n_alphabet];
-	sorted = new Planet[n];
 	for(int j = n_name-1; j >= 0; j--){
-		
 		for(int i=0;i<n_alphabet;i++){
 			indexes[i] = 0;
 		}
-		//std::cout<<"vai ir de "<<begin<<" a "<<end<<"\n";
 		for(int i=begin; i<=end; i++){
 			indexes[((int)main[i].name[j]-97)]++;
 		}
@@ -89,23 +85,19 @@ void CountingSort(int begin, int end, int n_name, int n, Planet main[]){
 		for(int i=1;i<n_alphabet;i++){
 			indexes[i] += indexes[i-1];
 		}
-
-
-		for(int i=end; begin < i ; i--){
-
-			sorted[(indexes[((int)main[i].name[j]-97)]- 1)+begin].name = main[i].name;
-			sorted[(indexes[((int)main[i].name[j]-97)]- 1)+begin].time = main[i].time;
-			sorted[(indexes[((int)main[i].name[j]-97)]- 1)+begin].month = main[i].month;
+		for(int i=end; i>=begin ; i--){
+			sorted[indexes[((int)main[i].name[j]-97)]- 1+begin].name = main[i].name;
+			sorted[indexes[((int)main[i].name[j]-97)]- 1+begin].time = main[i].time;
+			sorted[indexes[((int)main[i].name[j]-97)]- 1+begin].month = main[i].month;
 			indexes[((int)main[i].name[j]-97)]--;
 		}
 
-		for(int i = begin; i < end; i++){
+		for(int i = begin; i <= end; i++){
 			main[i].time = sorted[i].time;
 			main[i].name = sorted[i].name;
 			main[i].month = sorted[i].month;
 		}
 	}
-	delete [] sorted;
 }
 
 void SetMonth(Planet master[],int size, int t_max){
@@ -127,15 +119,23 @@ void SetMonth(Planet master[],int size, int t_max){
 
 void Scheduler(int size,int max_t, int n_char, Planet planets[]){
 	SetMonth(planets, size, max_t);
-	
+	Planet *aux_planets = new Planet [size];
 	int i = 0;
-	int j = 1;
+	bool flag = true;
 	
-	while(j < size){
-		if(planets[i].month < planets[j].month){
-			CountingSort(i, j-1, n_char, size, planets);
-			i = j;
+	for(int j = 1; j<size; j++){
+		if(j != size){
+			if(planets[i].month < planets[j].month){
+				CountingSort(i,j-1, n_char,planets, aux_planets);
+				i = j;
+				flag = false;
+			}
+		}else{
+			CountingSort(j,size-1,n_char,planets, aux_planets);
 		}
-		j++;
 	}
+	if(flag){
+		CountingSort(i,size-1,n_char,planets, aux_planets);
+	}
+	delete [] aux_planets;
 }

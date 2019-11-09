@@ -9,7 +9,7 @@ struct Planet{
 	std::string name;
 };
 
-void CountingSort(int, int, int, int, Planet[]);
+void CountingSort(int, int, int, Planet[], Planet[]);
 void print_Parray(int, Planet[]);
 void print_Iarray(int, int[]);
 void Scheduler(int, int, int, Planet[]);
