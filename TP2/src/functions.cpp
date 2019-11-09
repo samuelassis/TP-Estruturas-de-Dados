@@ -5,7 +5,7 @@
 
 void print_Parray(int size, Planet array[]){
 	for(int a = 0; a<size; a++){
-		std::cout<<"["<< array[a].month<<"|"<< array[a].name <<"|"<< array[a].time<<"] ";
+		std::cout<< array[a].month<<" "<< array[a].name <<" "<< array[a].time<<std::endl;
 	}
 }
 void print_Iarray(int size, int array[]){
@@ -75,41 +75,37 @@ void MergeSort(Planet main[], int left, int right){
 void CountingSort(int begin, int end, int n_name, int n, Planet main[]){
 	Planet* sorted = nullptr;
 	int indexes[n_alphabet];
-	int place;
-
+	sorted = new Planet[n];
 	for(int j = n_name-1; j >= 0; j--){
 		
 		for(int i=0;i<n_alphabet;i++){
 			indexes[i] = 0;
 		}
-//		std::cout<<"vai ir de "<<begin<<" a "<<end<<"\n";
-		for(int i=begin; i<end; i++){
+		//std::cout<<"vai ir de "<<begin<<" a "<<end<<"\n";
+		for(int i=begin; i<=end; i++){
 			indexes[((int)main[i].name[j]-97)]++;
-//			std::cout<<"Letra: "<<main[i].name[j]<<" --> "<<(int)main[i].name[j]<<"-"<<(int)main[i].name[j]-97<<"\n";
 		}
-		//std::cout<<"\n index: ";
-//		print_Iarray(n_alphabet, indexes);
 
 		for(int i=1;i<n_alphabet;i++){
 			indexes[i] += indexes[i-1];
 		}
 
-		sorted = new Planet[n];
-		for(int i=end-1; begin <= i ; i--){
-			place = (indexes[((int)main[i].name[j]-97)]-1)+begin;
-			sorted[place].name = main[i].name;
-			sorted[place].time = main[i].time;
-			sorted[place].month = main[i].month;
+
+		for(int i=end; begin < i ; i--){
+
+			sorted[(indexes[((int)main[i].name[j]-97)]- 1)+begin].name = main[i].name;
+			sorted[(indexes[((int)main[i].name[j]-97)]- 1)+begin].time = main[i].time;
+			sorted[(indexes[((int)main[i].name[j]-97)]- 1)+begin].month = main[i].month;
 			indexes[((int)main[i].name[j]-97)]--;
 		}
 
-		for(int i = 0; i < n; i++){
+		for(int i = begin; i < end; i++){
 			main[i].time = sorted[i].time;
 			main[i].name = sorted[i].name;
 			main[i].month = sorted[i].month;
 		}
-		delete [] sorted;
 	}
+	delete [] sorted;
 }
 
 void SetMonth(Planet master[],int size, int t_max){
@@ -131,14 +127,13 @@ void SetMonth(Planet master[],int size, int t_max){
 
 void Scheduler(int size,int max_t, int n_char, Planet planets[]){
 	SetMonth(planets, size, max_t);
-	std::cout<<"\n";
-	//print_Parray(size,planets);
-
+	
 	int i = 0;
 	int j = 1;
+	
 	while(j < size){
 		if(planets[i].month < planets[j].month){
-			CountingSort(i, j,n_char,size,planets);
+			CountingSort(i, j-1, n_char, size, planets);
 			i = j;
 		}
 		j++;

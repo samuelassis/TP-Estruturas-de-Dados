@@ -21,9 +21,7 @@ int main(){
     	planets[i].name = planet_tag;
     }
     MergeSort(planets, prime, p-1);
-//    print_Parray(p, planets);
     Scheduler(p,t,c,planets);
-//    std::cout<<"\n";
     print_Parray(p, planets);
   }
   delete [] planets;

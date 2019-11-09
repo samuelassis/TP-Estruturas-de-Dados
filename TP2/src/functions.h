@@ -16,6 +16,5 @@ void Scheduler(int, int, int, Planet[]);
 void MergeSort(Planet[], int, int);
 void Merge(Planet[], int, int, int);
 void SetMonth(Planet[],int,int);
-//void RadixSort();
 
 #endif
