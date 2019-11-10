@@ -8,11 +8,7 @@ void print_Parray(int size, Planet array[]){
 		std::cout<< array[a].month<<" "<< array[a].name <<" "<< array[a].time<<std::endl;
 	}
 }
-void print_Iarray(int size, int array[]){
-	for(int b=0; b<size; b++){
-		std::cout<<"["<< array[b] <<"] ";
-	}
-}
+
 void Merge(Planet main[], int l, int m, int r){ 
     int i, j, k; 
     int size_l = m - l + 1; 
@@ -20,57 +16,55 @@ void Merge(Planet main[], int l, int m, int r){
   
     Planet* L = new Planet [size_l];
     Planet* R = new Planet [size_r]; 
-    for (i = 0; i < size_l; i++){
-		L[i].time = main[l + i].time; 
-		L[i].name = main[l + i].name; 
+    for(i = 0; i < size_l; i++){
+		L[i].time = main[l + i].time;
+		L[i].name = main[l + i].name;
     }
-    for (j = 0; j < size_r; j++){
+    for(j = 0; j < size_r; j++){
 		R[j].time = main[m + 1+ j].time;
 		R[j].name = main[m + 1+ j].name;
     }
     i = 0;
     j = 0;
     k = l;
-    while (i < size_l && j < size_r) { 
-        if (L[i].time <= R[j].time) 
-        { 
-            main[k].time = L[i].time; 
+    while(i < size_l && j < size_r){ 
+        if (L[i].time <= R[j].time){ 
+            main[k].time = L[i].time;
             main[k].name = L[i].name;
-            i++; 
+            i++;
         } 
-        else
-        { 
+        else{ 
             main[k].time = R[j].time;
             main[k].name = R[j].name;
-            j++; 
+            j++;
         } 
-        k++; 
+        k++;
     } 
 
-    while (i < size_l) { 
-        main[k].time = L[i].time; 
+    while (i < size_l){ 
+        main[k].time = L[i].time;
         main[k].name = L[i].name;
-        i++; 
-        k++; 
+        i++;
+        k++;
     } 
-    while (j < size_r) { 
+    while(j < size_r){ 
         main[k].time = R[j].time;
         main[k].name = R[j].name;
-        j++; 
-    	k++; 
+        j++;
+    	k++;
     }
     delete[] L;
     delete[] R;
-} 
-  
+}
+
 void MergeSort(Planet main[], int left, int right){ 
-    if (left < right) { 
+    if (left < right){
         int middle = left+(right-left)/2;
-        MergeSort(main, left, middle); 
+        MergeSort(main, left, middle);
         MergeSort(main, middle+1, right); 
-        Merge(main, left, middle, right); 
-    } 
-} 
+        Merge(main, left, middle, right);
+    }
+}
 
 void CountingSort(int begin, int end, int n_name, Planet main[], Planet sorted[]){
 	int indexes[n_alphabet];
