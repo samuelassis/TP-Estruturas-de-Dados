@@ -17,6 +17,7 @@ Lista::~Lista(){
 		a = b->next;
 		delete b;
 	}
+	delete a;
 }
 
 void Lista::add_element(std::string element){
