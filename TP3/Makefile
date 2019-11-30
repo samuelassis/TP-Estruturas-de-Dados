@@ -2,7 +2,7 @@ CC=g++
 CFLAGS=-Wall -Wextra -g -std=c++11
 EXEC=./tp3
 
-${EXEC}: src/main.cpp lista.o functions.o
+${EXEC}: src/main.cpp lista.o functions.o huffman.o
 	${CC} ${CFLAGS} src/main.cpp lista.o functions.o -o ${EXEC}
 
 lista.o: src/lista.cpp
@@ -10,6 +10,9 @@ lista.o: src/lista.cpp
 
 functions.o: src/functions.cpp
 	${CC} ${CFLAGS} src/functions.cpp -c -o functions.o
+
+huffman.o: src/huffman.cpp
+	${CC} ${CFLAGS} src/huffman.cpp -c -o huffman.o
 
 test: ${EXEC}
 	@bash run_tests.sh ${EXEC}

@@ -1,4 +1,4 @@
-#define t_size 64
+#define t_size 128
 
 #include <cstdio>
 #include <iostream>
@@ -9,23 +9,28 @@ using namespace std;
 
 int main() {
   Lista hash [t_size];
- // Hash = new Lista[t_size];
   int n;
   scanf("%d", &n);
   string word;
   for (int i = 0; i < n; ++i) {
     cin >> word;
     hash[hashing(word, t_size)].incremental(word);
-    // insira/atualize o contador de `word` na estrutura de busca aqui
   }
-  char op;  // CUIDADO para não ler o '\n' ao invés da operação
-            // o espaço antes do %c está lá pra isso
+  char op;
+  Cell aux;
+  Node* data = new Node[n_words(hash,t_size)];
+  
+  //BuildHuffman();
+  
+
   while (cin >> op >> word) {
     if (op == 'q'){
-    	Cell aux;
     	hash[hashing(word,t_size)].search(word,aux);
     	cout<< aux.count<<endl;
+    }else if(op == 'c'){
+
     }
   }
+  delete [] data;
   return 0;
 }
