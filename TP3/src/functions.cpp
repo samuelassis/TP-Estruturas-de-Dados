@@ -41,7 +41,7 @@ void data_transfer(Node a_data[], Lista table[], int size){
 				c_aux = c_aux->next;
 				a_data[index].word = c_aux->term;
 				a_data[index].count = c_aux->count;
-				a_data[index].leave = 0;
+				a_data[index].leave = 1;
 				index++;
 			}
 		}

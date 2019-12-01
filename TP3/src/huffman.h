@@ -20,8 +20,12 @@ struct Tree{
 	Tree(Node*);
 };
 
+void swap(Node&, Node&);
+void MakeHeap(Node [], int);
+void HeapifyUp(Node [], int);
 void Heapify(Node [], int, int);
-Node MergeNode(Node[], Node[]);
+int CompareNode(Node,Node);
+void MergeNode(Node&, Node&, Node&);
 void EncondeWords(Node&, Lista,int);
 void BuildHuffman(Node[],Lista[],int, int);
 
