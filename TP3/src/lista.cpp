@@ -98,7 +98,7 @@ void Lista::search(std::string text ,Cell& copy){
 	for(int i=0; i <this->n_elements; i++){
 		if(aux->term == text){
 			copy.term = aux->term;
-
+			copy.code = aux->term;
 			copy.count = aux->count;
 		}
 		aux = aux->next;

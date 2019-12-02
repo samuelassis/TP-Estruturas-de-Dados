@@ -119,6 +119,10 @@ void MergeNode(Node* x, Node* y, Node& root){
 
 
 void EncodeWords(Node* tree, Lista HashTable[],int t_size,char b,string& code){
+	if(tree == nullptr){
+		return;
+	}
+
 	if(b != 'r'){
 		code.append(&b);
 	}
@@ -126,7 +130,6 @@ void EncodeWords(Node* tree, Lista HashTable[],int t_size,char b,string& code){
 		Cell aux;
 		HashTable[hashing(tree->word,t_size)].set_code(tree->word,code);
 		code = "/0";
-
 	}
 	EncodeWords(tree->left,HashTable,t_size,'0',code);
 	EncodeWords(tree->right,HashTable,t_size,'1',code);
