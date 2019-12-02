@@ -93,17 +93,27 @@ void Lista::incremental(std::string text){
 		add_element(text);
 	}
 }
-void Lista::search(std::string text ,Cell& node){
+void Lista::search(std::string text ,Cell& copy){
 	Cell* aux = first->next;
 	for(int i=0; i <this->n_elements; i++){
 		if(aux->term == text){
-			node.term = aux->term;
-			node.count = aux->count;
+			copy.term = aux->term;
+
+			copy.count = aux->count;
 		}
 		aux = aux->next;
 	}
 }
 
+void Lista::set_code(std::string word, std::string cod){
+	Cell* it = first->next;
+	for(int i=0; i<n_elements; i++){
+		if(it->term == word){
+			it->code = cod;
+		}
+		it= it->next;
+	}
+}
 
 int Lista::get_n_elements(){
 	return n_elements;

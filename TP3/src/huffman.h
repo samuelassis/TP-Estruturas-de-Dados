@@ -8,7 +8,6 @@ struct Node{
 	std::string word;
 	int count;
 	int leave;
-//  int or string code;
 	Node* left;
 	Node* right;
 };
@@ -20,13 +19,14 @@ struct Tree{
 	Tree(Node*);
 };
 
-void swap(Node&, Node&);
+void swap(Node*, Node*);
 void MakeHeap(Node [], int);
 void HeapifyUp(Node [], int);
 void Heapify(Node [], int, int);
 int CompareNode(Node,Node);
-void MergeNode(Node&, Node&, Node&);
-void EncondeWords(Node&, Lista,int);
-void BuildHuffman(Node[],Lista[],int, int);
+void ExtractMin(Node[],int , Node*, Node*);
+void TreeWalk(Node*);
+void MergeNode(Node*, Node*, Node&);
+void EncodeWords(Node*, Lista[],int,char,std::string&);
 
 #endif

@@ -24,7 +24,6 @@ int n_words(Lista table[],int size){
 	int acc = 0;
 	for(int i=0; i<size; i++){
 		acc += table[i].get_n_elements();
-		std::cout<<"{"<<table[i].get_n_elements()<<"} ";
 	}
 	return acc;
 }
@@ -39,9 +38,11 @@ void data_transfer(Node a_data[], Lista table[], int size){
 		if(l_size < 0){
 			for(int j=0; j<l_size;j++){
 				c_aux = c_aux->next;
-				a_data[index].word = c_aux->term;
+				a_data[index].word  = c_aux->term;
 				a_data[index].count = c_aux->count;
 				a_data[index].leave = 1;
+				a_data[index].right = nullptr;
+				a_data[index].left  = nullptr; 
 				index++;
 			}
 		}

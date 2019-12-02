@@ -6,6 +6,7 @@
 struct Cell{
 	std::string term;
 	int count;
+	std::string code;
 	Cell* next;
 	Cell* previous;
 };
@@ -21,6 +22,7 @@ struct Lista{
 	void remove_element(std::string);
 	void print_list();
 	void incremental(std::string);
+	void set_code(std::string,std::string);
 	int get_n_elements();
 	void search(std::string,Cell&);
 };
