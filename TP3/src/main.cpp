@@ -1,4 +1,4 @@
-#define t_size 128
+#define t_size 12
 
 #include <cstdio>
 #include <iostream>
@@ -45,7 +45,7 @@ int main() {
   int d_size = n_words(hash,t_size);
   Node* data = new Node[d_size];
   data_transfer(data,hash,t_size);
-  	
+
   	while(d_size !=2){
 		Node*min1 = new Node();
 		Node*min2 = new Node();
@@ -56,9 +56,9 @@ int main() {
 		d_size--;
 	}
 	Node tree;
-	string codigo;
+	string codigo = "";
 	MergeNode(&data[0],&data[1],tree);
- 	//EncodeWords(&tree, hash,t_size,'r',codigo);
+ 	EncodeWords(&tree, hash,t_size,'r',codigo);
   	
   while (cin >> op >> word) {
     if (op == 'q'){

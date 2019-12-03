@@ -124,12 +124,12 @@ void EncodeWords(Node* tree, Lista HashTable[],int t_size,char b,string& code){
 	}
 
 	if(b != 'r'){
-		code.append(&b);
+		code =+ b;
 	}
 	if(tree->left == nullptr && tree->right == nullptr){
 		Cell aux;
 		HashTable[hashing(tree->word,t_size)].set_code(tree->word,code);
-		code = "/0";
+		code = "";
 	}
 	EncodeWords(tree->left,HashTable,t_size,'0',code);
 	EncodeWords(tree->right,HashTable,t_size,'1',code);

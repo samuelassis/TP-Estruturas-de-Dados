@@ -111,7 +111,7 @@ void Lista::set_code(std::string word, std::string cod){
 		if(it->term == word){
 			it->code = cod;
 		}
-		it= it->next;
+		it = it->next;
 	}
 }
 

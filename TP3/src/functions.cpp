@@ -35,14 +35,14 @@ void data_transfer(Node a_data[], Lista table[], int size){
 	for(int i=0; i<size;i++){
 		l_size = table[i].get_n_elements();
 		c_aux = table[i].first;
-		if(l_size < 0){
+		if(l_size > 0){
 			for(int j=0; j<l_size;j++){
 				c_aux = c_aux->next;
 				a_data[index].word  = c_aux->term;
 				a_data[index].count = c_aux->count;
 				a_data[index].leave = 1;
 				a_data[index].right = nullptr;
-				a_data[index].left  = nullptr; 
+				a_data[index].left  = nullptr;
 				index++;
 			}
 		}
