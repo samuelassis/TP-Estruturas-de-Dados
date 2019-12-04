@@ -1,4 +1,4 @@
-#define t_size 12
+#define t_size 128
 
 #include <cstdio>
 #include <iostream>
